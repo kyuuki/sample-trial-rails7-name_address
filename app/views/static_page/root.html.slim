@@ -1,0 +1,7 @@
+.row
+  .col-md-6.offset-md-3
+    .card
+      .card-body
+        ul
+          - Prefecture.all.each do |prefecture|
+            li #{prefecture.id}: #{prefecture.name}
