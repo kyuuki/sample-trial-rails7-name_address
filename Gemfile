@@ -64,3 +64,8 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem "slim-rails"
+
+# https://github.com/active-hash/active_hash
+gem "active_hash"
