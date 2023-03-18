@@ -9,37 +9,59 @@
 
   input type="hidden" class="p-country-name" value="Japan"
 
-  div.form-group
+  .form-group
     = form.label :name, "名前"
     = form.text_field :name, class: "form-control col-8", required: true, autocomplete: "name"
     / autocomple の値: https://developer.mozilla.org/ja/docs/Web/HTML/Attributes/autocomplete
 
-  div.form-group
+  .form-group
     = form.label :name_kana, "名前（フリガナ）"
     = form.text_field :name_kana, class: "form-control col-8", required: true
 
-  div.form-group
+  .form-group
     = form.label :phone_number, "電話番号"
     = form.text_field :phone_number, class: "form-control col-6", required: true, autocomplete: "tel"
     small.form-text.text-muted ハイフン区切り (-) 不要
 
-  div.form-group
+  .form-group
     = form.label :zipcode, "郵便番号"
     = form.text_field :zipcode, class: "form-control col-4 p-postal-code", required: true, autocomplete: "postal-code"
     small.form-text.text-muted ハイフン区切り (-) 不要
 
-  div.form-group
+  .form-group
     = form.label :prefecture_id, "都道府県"
     = form.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "-"}, {class: "form-control col-3 p-region-id", required: true}
     / https://www.whizz-tech.co.jp/1843/
 
-  div.form-group
+  .form-group
     = form.label :address, "住所"
     = form.text_field :address, class: "form-control p-locality p-street-address", required: true, autocomplete: "street-address"
 
-  div.form-group
+  .form-group
     = form.label :birthday, "生年月日"
     = form.date_field :birthday, class: "form-control col-4", required: true, autocomplete: "bday"
 
-  div
-    = form.submit
+  hr
+
+  .form-group.form-check
+    = form.check_box :check1, class: "form-check-input", required: true
+    = form.label :check1, "同意する", class: "form-check-label"
+    small.form-text.text-muted キャンセルポリシーについて同意の上、チェックしてください
+    .form-text = link_to "特定商取引法に基づく表記を表示する", "/", target: "_blank"
+
+  .form-group.form-check
+    = form.check_box :check2, class: "form-check-input", required: true
+    = form.label :check2, "同意する", class: "form-check-label"
+    small.form-text.text-muted 個人情報の取扱いについて同意の上、チェックしてください
+    .form-text = link_to "個人情報保護方針を表示する", "/", target: "_blank"
+
+  .form-group.form-check
+    = form.check_box :check3, class: "form-check-input", required: true
+    = form.label :check3, "同意する", class: "form-check-label"
+    small.form-text.text-muted 利用規約について同意の上、チェックしてください
+    .form-text = link_to "利用規約を表示する", "/", target: "_blank"
+
+  hr
+
+  .form-group
+    = form.submit "新規登録", class: "btn btn-primary col-2"
