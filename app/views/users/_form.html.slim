@@ -1,0 +1,42 @@
+/ https://getbootstrap.com/docs/4.6/components/forms/
+= form_with(model: @user) do |form|
+  - if @user.errors.any?
+    div style="color: red"
+      h2 = "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+      ul
+        - @user.errors.each do |error|
+          li = error.full_message
+
+  div.form-group
+    = form.label :name, "名前"
+    = form.text_field :name, class: "form-control col-8", required: true, autocomplete: "name"
+    / autocomple の値: https://developer.mozilla.org/ja/docs/Web/HTML/Attributes/autocomplete
+
+  div.form-group
+    = form.label :name_kana, "名前（フリガナ）"
+    = form.text_field :name_kana, class: "form-control col-8", required: true
+
+  div.form-group
+    = form.label :phone_number, "電話番号"
+    = form.text_field :phone_number, class: "form-control col-6", required: true, autocomplete: "tel"
+    small.form-text.text-muted ハイフン区切り (-) 不要
+
+  div.form-group
+    = form.label :zipcode, "郵便番号"
+    = form.text_field :zipcode, class: "form-control col-4", required: true, autocomplete: "postal-code"
+    small.form-text.text-muted ハイフン区切り (-) 不要
+
+  div.form-group
+    = form.label :prefecture_id, "都道府県"
+    = form.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "-"}, {class: "form-control col-3", required: true}
+
+  div.form-group
+    = form.label :address, "住所"
+    = form.text_field :address, class: "form-control", required: true, autocomplete: "street-address"
+
+  div.form-group
+    = form.label :birthday, "生年月日"
+    = form.date_field :birthday, class: "form-control col-4", required: true, autocomplete: "bday"
+
+  div
+    = form.submit
