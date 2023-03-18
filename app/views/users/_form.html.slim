@@ -1,11 +1,13 @@
 / https://getbootstrap.com/docs/4.6/components/forms/
-= form_with(model: @user) do |form|
+= form_with(model: @user, class: "h-adr") do |form|
   - if @user.errors.any?
     div style="color: red"
       h2 = "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
       ul
         - @user.errors.each do |error|
           li = error.full_message
+
+  input type="hidden" class="p-country-name" value="Japan"
 
   div.form-group
     = form.label :name, "名前"
@@ -23,16 +25,17 @@
 
   div.form-group
     = form.label :zipcode, "郵便番号"
-    = form.text_field :zipcode, class: "form-control col-4", required: true, autocomplete: "postal-code"
+    = form.text_field :zipcode, class: "form-control col-4 p-postal-code", required: true, autocomplete: "postal-code"
     small.form-text.text-muted ハイフン区切り (-) 不要
 
   div.form-group
     = form.label :prefecture_id, "都道府県"
-    = form.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "-"}, {class: "form-control col-3", required: true}
+    = form.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "-"}, {class: "form-control col-3 p-region-id", required: true}
+    / https://www.whizz-tech.co.jp/1843/
 
   div.form-group
     = form.label :address, "住所"
-    = form.text_field :address, class: "form-control", required: true, autocomplete: "street-address"
+    = form.text_field :address, class: "form-control p-locality p-street-address", required: true, autocomplete: "street-address"
 
   div.form-group
     = form.label :birthday, "生年月日"
